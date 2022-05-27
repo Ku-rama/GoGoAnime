@@ -11,8 +11,6 @@ import SDWebImage
 class AnimeDetails1ViewController: UIViewController {
     
     var animeDetails = Anime()
-    var simpleView1: UIView!
-    var simpleView2: UIView!
     
     private let animePoster: UIImageView = {
         let image = UIImageView()
@@ -34,8 +32,8 @@ class AnimeDetails1ViewController: UIViewController {
         view.addSubview(animePoster)
         animePoster.sd_setImage(with: URL(string: animeDetails.cover_image ?? ""), completed: nil)
         view.addSubview(containerView)
-        containerView.addSubview(simpleView1)
-        containerView.addSubview(simpleView2)
+        getAnimeDetails()
+        
     }
     
     
@@ -46,9 +44,25 @@ class AnimeDetails1ViewController: UIViewController {
         
     }
     
-    
-    
     @objc func handleDismiss(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    private func getAnimeDetails(){
+        guard let animeId = animeDetails.id else{
+            return
+        }
+        APICaller.shared.getAnimeDetails(for: animeId) { result in
+            switch result{
+            case .success(let model):
+                print(model)
+                break
+            case .failure(let err):
+                print(err)
+                break
+            }
+        }
+    }
+    
+    
 }
