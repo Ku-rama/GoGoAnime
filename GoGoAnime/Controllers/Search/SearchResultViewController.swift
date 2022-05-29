@@ -13,7 +13,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     
     private let searchResultTableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
-        tv.register(Search1TableViewCell.self, forCellReuseIdentifier: Search1TableViewCell.identifier)
+        tv.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tv
     }()
@@ -49,7 +49,7 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Search1TableViewCell.identifier, for: indexPath) as? Search1TableViewCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else{
             return UITableViewCell()
         }
         cell.configure(with: animeSearchResult[indexPath.item])

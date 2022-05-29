@@ -7,15 +7,14 @@
 
 import UIKit
 
-class Search1TableViewCell: UITableViewCell {
+class SearchTableViewCell: UITableViewCell {
     
     static let identifier = "Search1TableViewCell"
-    
     
     let animeImageView: UIImageView = {
         let iv = UIImageView()
         iv.clipsToBounds = true
-        iv.layer.cornerRadius = 30
+        iv.layer.cornerRadius = 28
         iv.contentMode = .scaleAspectFill
         return iv
     }()
@@ -49,14 +48,14 @@ class Search1TableViewCell: UITableViewCell {
         addSubview(animeImageView)
         addSubview(animeNameLabel)
         addSubview(separatorView)
-        animeImageView.frame = CGRect(x: 10, y: 5, width: 60, height: 60)
+        animeImageView.frame = CGRect(x: 10, y: 5, width: 56, height: 56)
         animeNameLabel.frame = CGRect(x: animeImageView.frame.maxX+15, y: 5, width: frame.width-animeImageView.frame.width-30, height: 50)
         separatorView.frame = CGRect(x: 90, y: frame.height-0.5, width: frame.width-50, height: 0.5)
     }
     
     func configure(with anime: Anime){
         if let animeName = anime.titles, let animeImage = anime.cover_image{
-            animeNameLabel.attributedText = NSMutableAttributedString(string: animeName, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)])
+            animeNameLabel.attributedText = NSMutableAttributedString(string: animeName, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
             animeImageView.sd_setImage(with: URL(string: animeImage))
             
         }
