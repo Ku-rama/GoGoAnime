@@ -11,6 +11,7 @@ import SDWebImage
 class AnimeDetails1ViewController: UIViewController {
     
     var animeDetails = Anime()
+    var anime = AnimeDetailsResponse()
     
     private let animePoster: UIImageView = {
         let image = UIImageView()
@@ -21,6 +22,7 @@ class AnimeDetails1ViewController: UIViewController {
     
     let containerView: UIView = {
         let view = UIView()
+        view.backgroundColor = .systemPink
         return view
     }()
     
@@ -33,7 +35,7 @@ class AnimeDetails1ViewController: UIViewController {
         animePoster.sd_setImage(with: URL(string: animeDetails.cover_image ?? ""), completed: nil)
         view.addSubview(containerView)
         getAnimeDetails()
-        
+        print("Printing from viewDidload",anime)
     }
     
     
@@ -41,7 +43,6 @@ class AnimeDetails1ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         animePoster.frame = CGRect(x: view.frame.midX-90, y: 60, width: 180, height: 320)
         containerView.frame = CGRect(x: 0, y: animePoster.frame.maxY, width: view.frame.width, height: view.frame.height-25-view.frame.midY)
-        
     }
     
     @objc func handleDismiss(){
@@ -55,7 +56,7 @@ class AnimeDetails1ViewController: UIViewController {
         APICaller.shared.getAnimeDetails(for: animeId) { result in
             switch result{
             case .success(let model):
-                print(model)
+                self.anime = model
                 break
             case .failure(let err):
                 print(err)

@@ -17,11 +17,11 @@ class MainTabBarViewController: UITabBarController {
         let vc3 = LibraryViewController()
         
         vc1.title = "Home"
-        vc2.title = "Search"
+//        vc2.title = "Search"
         vc3.title = "Library"
         
         vc1.navigationItem.largeTitleDisplayMode = .always
-        vc2.navigationItem.largeTitleDisplayMode = .always
+        vc2.navigationItem.largeTitleDisplayMode = .never
         vc3.navigationItem.largeTitleDisplayMode = .always
         
         let nav1 = UINavigationController(rootViewController: vc1)

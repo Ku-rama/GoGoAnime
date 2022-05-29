@@ -8,7 +8,7 @@
 import Foundation
 
 struct AnimeDetailsResponse: Codable{
-    var data: AnimeDetails
+    var data: AnimeDetails?
 }
 
 struct AnimeDetails: Codable{

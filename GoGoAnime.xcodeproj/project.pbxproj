@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA5A156128422D8A00318650 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A156028422D8A00318650 /* SearchResultViewController.swift */; };
+		BA6924062842810C005D12C7 /* Search1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6924052842810C005D12C7 /* Search1TableViewCell.swift */; };
 		BA7731592840A2CD005F936B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7731582840A2CD005F936B /* AppDelegate.swift */; };
 		BA77315B2840A2CD005F936B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77315A2840A2CD005F936B /* SceneDelegate.swift */; };
 		BA77315D2840A2CD005F936B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA77315C2840A2CD005F936B /* ViewController.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA5A156028422D8A00318650 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		BA6924052842810C005D12C7 /* Search1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search1TableViewCell.swift; sourceTree = "<group>"; };
 		BA7731552840A2CD005F936B /* GoGoAnime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGoAnime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA7731582840A2CD005F936B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA77315A2840A2CD005F936B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,8 +192,9 @@
 			children = (
 				BA77319A2840AF3A005F936B /* MainTabBarViewController.swift */,
 				BA77319C2840AF6B005F936B /* HomeViewController.swift */,
-				BA7731A12840B068005F936B /* SearchViewController.swift */,
 				BA7731A32840B0AE005F936B /* LibraryViewController.swift */,
+				BA5A156028422D8A00318650 /* SearchResultViewController.swift */,
+				BA7731A12840B068005F936B /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				BA7731A82840B10E005F936B /* AuthViewController.swift */,
 				BA7731AA2840B145005F936B /* AnimeCollectionViewCell.swift */,
 				BA7731AE2840B269005F936B /* AnimeDetails1ViewController.swift */,
+				BA6924052842810C005D12C7 /* Search1TableViewCell.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -349,7 +355,9 @@
 				BA77319B2840AF3A005F936B /* MainTabBarViewController.swift in Sources */,
 				BA7731912840AE5C005F936B /* AuthManager.swift in Sources */,
 				BA7731962840AEBF005F936B /* Anime.swift in Sources */,
+				BA6924062842810C005D12C7 /* Search1TableViewCell.swift in Sources */,
 				BA7731592840A2CD005F936B /* AppDelegate.swift in Sources */,
+				BA5A156128422D8A00318650 /* SearchResultViewController.swift in Sources */,
 				BA77319D2840AF6B005F936B /* HomeViewController.swift in Sources */,
 				BA7731A92840B10E005F936B /* AuthViewController.swift in Sources */,
 				BA7731AD2840B229005F936B /* Extensions.swift in Sources */,

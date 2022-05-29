@@ -12,6 +12,8 @@ final class APICaller{
     static let shared = APICaller()
     
     var anime = [Anime]()
+    var animeDetails = AnimeDetails()
+    var searchedAnime = [Anime]()
         
     private init(){
         
@@ -69,7 +71,58 @@ final class APICaller{
                 catch{
                     print(error)
                     completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    public func searchAnimeDetais(for animeString: String, completion:@escaping(Result<[Anime], Error>) -> Void){
+        
+        guard let apiUrl = URL(string: Constants.baseUrl+"/anime?title=\(animeString)") else{
+            return
+        }
+        
+        createRequest(with: apiUrl, type: .GET) { request in
+            self.searchedAnime.removeAll()
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
                     
+                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    
+                    if let myResult = result as? [String: AnyObject]{
+                        guard let item = myResult["data"] as? [String: AnyObject], let document = item["documents"] as? [[String: AnyObject]] else{
+                            return
+                        }
+                        document.forEach { element in
+                            var temp =  Anime()
+                            temp.anilist_id = element["anilist_id"] as? Int
+                            temp.mal_id = element["mal_id"] as? Int
+                            temp.tmdb_id = element["tmdb_id"] as? Int
+                            temp.format = element["format"] as? Int
+                            guard let title = element["titles"] else{
+                                return
+                            }
+                            temp.titles = title["en"] as? String
+                            temp.cover_image = element["cover_image"] as? String
+                            temp.id = element["id"] as? Int
+                            self.searchedAnime.append(temp)
+                        }
+                        
+                        let encoder = JSONEncoder()
+                        if let jsonData = try? encoder.encode(self.searchedAnime){
+                            
+                            let resu = try JSONDecoder().decode([Anime].self, from: jsonData)
+                            completion(.success(resu))
+                        }
+                    }
+                }catch{
+                    print(error)
+                    completion(.failure(error))
                 }
             }
             task.resume()
@@ -89,6 +142,21 @@ final class APICaller{
                     return
                 }
                 do{
+                    
+//                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//                    print(result)
+                    
+//                    if let myResult = result as? [String: AnyObject]{
+//                        guard let item = myResult["data"] as? [String: AnyObject] else{
+//                            return
+//                        }
+//
+//                        let finalResult = try JSONDecoder().decode(AnimeDetails.self, from: item)
+//                        completion(.success(finalResult))
+//
+//                        print(item)
+//                    }
+                    
                     let resu = try JSONDecoder().decode(AnimeDetailsResponse.self, from: data)
                     completion(.success(resu))
                 }
@@ -100,6 +168,8 @@ final class APICaller{
             task.resume()
         }
     }
+    
+    
     
     
     enum HTTPMethod: String{

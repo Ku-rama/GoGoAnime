@@ -41,8 +41,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true, completion: nil)
     }
-    
-    
+
     var animeCollectionView: UICollectionView?
     
     override func viewDidLoad() {
